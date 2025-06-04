@@ -12,17 +12,17 @@ import { FaPlus, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { IconBaseProps } from "react-icons/lib";
 
-// Wrapper components for icons to ensure correct typing for JSX
-const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
-
-const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
-  <FaArrowLeft {...props} />
-);
-const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
-  <FaArrowRight {...props} />
-);
-
 const CommunicationPage = () => {
+  // Wrapper components for icons to ensure correct typing for JSX
+  const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
+
+  const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
+    <FaArrowLeft {...props} />
+  );
+  const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
+    <FaArrowRight {...props} />
+  );
+
   const [activeTab, setActiveTab] = useState("announcements");
   const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
@@ -40,7 +40,7 @@ const CommunicationPage = () => {
 
   return (
     <div className="d-flex">
-      <Sidebar active="Communication" />
+      <Sidebar />
       <div className="flex-grow-1 p-4">
         <div
           style={{
@@ -60,7 +60,7 @@ const CommunicationPage = () => {
         <div className="d-flex mt-3">
           <Form.Control type="text" placeholder="Search..." className="me-2" />
           <Button onClick={() => setShowAnnouncementModal(true)}>
-            <FaPlus className="me-2" />
+            <PlusIcon className="me-2" />
             Create an Announcement
           </Button>
         </div>
@@ -110,7 +110,7 @@ efficitur urna nisi non odio. Duis posuere nunc ac sapien fermentum, quis pretiu
             ))}
             <div className="d-flex justify-content-end mt-4">
               <Button variant="light" className="me-2">
-                <FaArrowLeft /> Prev
+                <ArrowLeftIcon /> Prev
               </Button>
               <Button variant="primary" className="me-2">
                 1
@@ -122,7 +122,7 @@ efficitur urna nisi non odio. Duis posuere nunc ac sapien fermentum, quis pretiu
                 3
               </Button>
               <Button variant="light">
-                Next <FaArrowRight />
+                Next <ArrowRightIcon />
               </Button>
             </div>
           </div>
@@ -141,7 +141,7 @@ efficitur urna nisi non odio. Duis posuere nunc ac sapien fermentum, quis pretiu
                   setCurrentMonth(newMonth);
                 }}
               >
-                <FaArrowLeft className="me-1" /> Prev
+                <ArrowLeftIcon className="me-1" /> Prev
               </Button>
 
               <h5 className="mb-0">
@@ -157,7 +157,7 @@ efficitur urna nisi non odio. Duis posuere nunc ac sapien fermentum, quis pretiu
                   setCurrentMonth(newMonth);
                 }}
               >
-                Next <FaArrowRight className="ms-1" />
+                Next <ArrowRightIcon className="ms-1" />
               </Button>
             </div>
 

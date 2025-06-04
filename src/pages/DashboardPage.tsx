@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 // Import at the top
-import Calender from "../components/Calendar"; // Adjust path if needed
-
 import {
   Container,
   Nav,
@@ -27,12 +25,14 @@ import FinancialPage from "./FinancialPage";
 import CommunicationPage from "./CommunicationPage";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
-
+import { IconBaseProps } from "react-icons/lib";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Calendar from "../components/Calendar";
 
 const DashboardPage = () => {
   const today = new Date().toLocaleDateString();
+  const PeopleFillIcon = BsPeopleFill;
+  const ThreeDotsVerticalIcon = BsThreeDotsVertical;
 
   return (
     <div
@@ -66,7 +66,9 @@ const DashboardPage = () => {
                 />
               </div>
               <Nav.Link className="text-white bg-primary rounded mb-2" href="#">
-                Dashboard
+                <Link to="/dashboard" className="nav-link text-white">
+                  Dashboard
+                </Link>
               </Nav.Link>
               <Nav.Link className="text-white" href="#">
                 <Link to="/users" className="nav-link text-white">
@@ -154,8 +156,8 @@ const DashboardPage = () => {
                   <Col md={4}>
                     <Card className="p-3 bg-light">
                       <div className="d-flex justify-content-between">
-                        <BsPersonBadgeFill size={30} />
-                        <BsThreeDotsVertical />
+                        <PeopleFillIcon size={30} />
+                        <ThreeDotsVerticalIcon />
                       </div>
                       <h5>4,588</h5>
                       <p>Total Students</p>
@@ -164,8 +166,8 @@ const DashboardPage = () => {
                   <Col md={4}>
                     <Card className="p-3 bg-light">
                       <div className="d-flex justify-content-between">
-                        <BsPersonFill size={30} />
-                        <BsThreeDotsVertical />
+                        <PeopleFillIcon size={30} />
+                        <ThreeDotsVerticalIcon />
                       </div>
                       <h5>34</h5>
                       <p>Total Teachers</p>
@@ -174,8 +176,8 @@ const DashboardPage = () => {
                   <Col md={4}>
                     <Card className="p-3 bg-light">
                       <div className="d-flex justify-content-between">
-                        <BsPeopleFill size={30} />
-                        <BsThreeDotsVertical />
+                        <PeopleFillIcon size={30} />
+                        <ThreeDotsVerticalIcon />
                       </div>
                       <h5>1,545</h5>
                       <p>Total Parents</p>
@@ -267,7 +269,7 @@ ta-center
               <Card className="p-3">
                 <h6>Create a Static Calendar</h6>
                 {/* Calendar Placeholder */}
-                <div style={{ height: "200px", backgroundColor: "#05022B" }}>
+                <div style={{ height: "250px", backgroundColor: "#05022B" }}>
                   {" "}
                   <Calendar />{" "}
                 </div>

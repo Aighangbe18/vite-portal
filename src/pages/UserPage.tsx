@@ -23,17 +23,17 @@ import { FaPlus, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
 
-// Wrapper components for icons to ensure correct typing for JSX
-const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
-const TrashIcon: React.FC<IconBaseProps> = (props) => <FaTrash {...props} />;
-const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
-  <FaArrowLeft {...props} />
-);
-const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
-  <FaArrowRight {...props} />
-);
-
 const UserPage = () => {
+  // ✅ Fix these lines
+  const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
+  const TrashIcon: React.FC<IconBaseProps> = (props) => <FaTrash {...props} />;
+  const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
+    <FaArrowLeft {...props} />
+  );
+  const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
+    <FaArrowRight {...props} />
+  );
+
   const [activeTab, setActiveTab] = useState("administrators");
   const [showModal, setShowModal] = useState(false);
 
@@ -70,7 +70,7 @@ const UserPage = () => {
             <Nav.Link as="div" className="text-white">
               {" "}
               {/* Use as="div" or similar to avoid nested <a> */}
-              <Link to="/Dashboard" className="nav-link text-white">
+              <Link to="/dashboard" className="nav-link text-white">
                 Dashboard
               </Link>
             </Nav.Link>
