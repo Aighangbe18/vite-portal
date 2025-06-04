@@ -23,15 +23,20 @@ import "../App.css";
 import { IconBaseProps } from "react-icons/lib";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Calendar from "../components/Calendar";
+// Usage
+
+import { IconType } from "react-icons";
 
 const DashboardPage = () => {
   const today = new Date().toLocaleDateString();
-  const PeopleFillIcon: React.FC<IconBaseProps> = (props) => (
-    <BsPeopleFill {...props} />
-  );
-  const ThreeDotsVerticalIcon: React.FC<IconBaseProps> = (props) => (
-    <BsThreeDotsVertical {...props} />
-  );
+
+  const IconWrapper =
+    (Icon: IconType) => (props: React.ComponentProps<IconType>) =>
+      <Icon {...props} />;
+
+  const PeopleFillIcon = IconWrapper(BsPeopleFill);
+  const ThreeDotsVerticalIcon = IconWrapper(BsThreeDotsVertical);
+
   return (
     <div
       className="d-flex"
