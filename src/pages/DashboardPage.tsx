@@ -18,11 +18,6 @@ import {
   BsPeopleFill,
   BsPersonBadgeFill,
 } from "react-icons/bs";
-import Footer from "../components/Footer";
-import UserPage from "./UserPage";
-import AcademicPage from "./AcademicPage";
-import FinancialPage from "./FinancialPage";
-import CommunicationPage from "./CommunicationPage";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
 import { IconBaseProps } from "react-icons/lib";

@@ -1,14 +1,8 @@
-import Footer from "../components/Footer";
-import UserPage from "./UserPage";
-import AcademicPage from "./AcademicPage";
-import FinancialPage from "./FinancialPage";
-import DashboardPage from "./DashboardPage";
 import React, { useState } from "react";
-import { Container, Button, Form, Modal, Row, Col } from "react-bootstrap";
+import { Button, Form, Modal, Row, Col } from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
 import TopImage from "../components/TopImage";
 import "../App.css";
-import { FaPlus, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { IconBaseProps } from "react-icons/lib";
 

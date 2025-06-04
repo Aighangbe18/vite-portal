@@ -9,7 +9,6 @@ import {
   Col,
   Row,
 } from "react-bootstrap";
-import Footer from "../components/Footer";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
