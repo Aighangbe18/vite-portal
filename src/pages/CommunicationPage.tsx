@@ -5,16 +5,17 @@ import TopImage from "../components/TopImage";
 import "../App.css";
 
 import { IconBaseProps } from "react-icons/lib";
+import { FaArrowLeft, FaArrowRight, FaPlus } from "react-icons/fa";
 
 const CommunicationPage = () => {
   // Wrapper components for icons to ensure correct typing for JSX
-  const PlusIcon: React.FC<IconBaseProps> = (props) => <PlusIcon {...props} />;
+  const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
 
   const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
-    <ArrowLeftIcon {...props} />
+    <FaArrowLeft {...props} />
   );
   const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
-    <ArrowRightIcon {...props} />
+    <FaArrowRight {...props} />
   );
 
   const [activeTab, setActiveTab] = useState("announcements");

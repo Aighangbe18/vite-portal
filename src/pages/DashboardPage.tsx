@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, SVGProps } from "react";
 // Import at the top
 import {
   Container,
@@ -27,10 +27,10 @@ import Calendar from "../components/Calendar";
 const DashboardPage = () => {
   const today = new Date().toLocaleDateString();
   const PeopleFillIcon: React.FC<IconBaseProps> = (props) => (
-    <PeopleFillIcon {...props} />
+    <BsPeopleFill {...props} />
   );
   const ThreeDotsVerticalIcon: React.FC<IconBaseProps> = (props) => (
-    <ThreeDotsVerticalIcon {...props} />
+    <BsThreeDotsVertical {...props} />
   );
   return (
     <div
