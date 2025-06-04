@@ -14,13 +14,13 @@ import { IconBaseProps } from "react-icons/lib";
 
 const CommunicationPage = () => {
   // Wrapper components for icons to ensure correct typing for JSX
-  const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
+  const PlusIcon: React.FC<IconBaseProps> = (props) => <PlusIcon {...props} />;
 
   const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
-    <FaArrowLeft {...props} />
+    <ArrowLeftIcon {...props} />
   );
   const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
-    <FaArrowRight {...props} />
+    <ArrowRightIcon {...props} />
   );
 
   const [activeTab, setActiveTab] = useState("announcements");

@@ -31,9 +31,12 @@ import Calendar from "../components/Calendar";
 
 const DashboardPage = () => {
   const today = new Date().toLocaleDateString();
-  const PeopleFillIcon = BsPeopleFill;
-  const ThreeDotsVerticalIcon = BsThreeDotsVertical;
-
+  const PeopleFillIcon: React.FC<IconBaseProps> = (props) => (
+    <PeopleFillIcon {...props} />
+  );
+  const ThreeDotsVerticalIcon: React.FC<IconBaseProps> = (props) => (
+    <ThreeDotsVerticalIcon {...props} />
+  );
   return (
     <div
       className="d-flex"

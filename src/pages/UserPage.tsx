@@ -25,13 +25,15 @@ import "../App.css";
 
 const UserPage = () => {
   // ✅ Fix these lines
-  const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
-  const TrashIcon: React.FC<IconBaseProps> = (props) => <FaTrash {...props} />;
+  const PlusIcon: React.FC<IconBaseProps> = (props) => <PlusIcon {...props} />;
+  const TrashIcon: React.FC<IconBaseProps> = (props) => (
+    <TrashIcon {...props} />
+  );
   const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
-    <FaArrowLeft {...props} />
+    <ArrowLeftIcon {...props} />
   );
   const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
-    <FaArrowRight {...props} />
+    <ArrowRightIcon {...props} />
   );
 
   const [activeTab, setActiveTab] = useState("administrators");
