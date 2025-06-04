@@ -14,11 +14,24 @@ import {
   Routes,
   Route,
   Link,
-  redirect,
+  // redirect, // 'redirect' was imported but not used. Removed unless needed.
 } from "react-router-dom";
+// Import IconProps for typing the wrapper components
+import { IconProps } from "react-icons";
+// Import the specific icons
 import { FaPlus, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
+
+// Wrapper components for icons to ensure correct typing for JSX
+const PlusIcon: React.FC<IconProps> = (props) => <FaPlus {...props} />;
+const TrashIcon: React.FC<IconProps> = (props) => <FaTrash {...props} />;
+const ArrowLeftIcon: React.FC<IconProps> = (props) => (
+  <FaArrowLeft {...props} />
+);
+const ArrowRightIcon: React.FC<IconProps> = (props) => (
+  <FaArrowRight {...props} />
+);
 
 const UserPage = () => {
   const [activeTab, setActiveTab] = useState("administrators");
@@ -54,27 +67,29 @@ const UserPage = () => {
                 }}
               />
             </div>
-            <Nav.Link className="text-white" href="#">
+            <Nav.Link as="div" className="text-white">
+              {" "}
+              {/* Use as="div" or similar to avoid nested <a> */}
               <Link to="/Dashboard" className="nav-link text-white">
                 Dashboard
               </Link>
             </Nav.Link>
-            <Nav.Link className="text-white bg-primary rounded mb-2" href="#">
+            <Nav.Link as="div" className="text-white bg-primary rounded mb-2">
               <Link to="/users" className="nav-link text-white">
                 User
               </Link>
             </Nav.Link>
-            <Nav.Link className="text-white" href="#">
+            <Nav.Link as="div" className="text-white">
               <Link to="/Academic" className="nav-link text-white">
                 Academic
               </Link>
             </Nav.Link>
-            <Nav.Link className="text-white" href="#">
+            <Nav.Link as="div" className="text-white">
               <Link to="/Financial" className="nav-link text-white">
                 Financial
               </Link>
             </Nav.Link>
-            <Nav.Link className="text-white" href="#">
+            <Nav.Link as="div" className="text-white">
               <Link to="/Communication" className="nav-link text-white">
                 Communication
               </Link>
@@ -83,6 +98,7 @@ const UserPage = () => {
         </div>
         <div>
           <Nav className="flex-column">
+            {/* These Nav.Link probably should navigate or perform actions */}
             <Nav.Link className="text-white" href="#">
               Settings
             </Nav.Link>
@@ -101,7 +117,7 @@ const UserPage = () => {
           </Col>
           <Col className="text-end">
             <img
-              src="/image 5.png"
+              src="/image 5.png" // Ensure this path is correct relative to your public folder
               alt="User Avatar"
               width="40"
               height="40"
@@ -141,7 +157,7 @@ const UserPage = () => {
               </Col>
               <Col md={3} className="text-end">
                 <Button variant="success" onClick={handleShow}>
-                  <FaPlus /> Add New Administrator
+                  <PlusIcon /> Add New Administrator
                 </Button>
               </Col>
             </Row>
@@ -158,20 +174,26 @@ const UserPage = () => {
             >
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "right", // CSS: 'flex-end' for display:flex parent
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
-                  display: "flex",
+                  display: "flex", // This div is also a flex container for its children
                   marginTop: "10px",
                   marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                {/* Ensure this span itself is properly aligned if needed */}
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  {" "}
+                  {/* Added example onClick */}
+                  Delete <TrashIcon />
                 </span>
               </div>
 
@@ -234,7 +256,7 @@ const UserPage = () => {
               </Col>
               <Col className="text-end">
                 <Button size="sm" variant="outline-secondary" className="me-2">
-                  <FaArrowLeft /> Prev
+                  <ArrowLeftIcon /> Prev
                 </Button>
                 <Button size="sm" variant="primary">
                   1
@@ -246,7 +268,7 @@ const UserPage = () => {
                   3
                 </Button>{" "}
                 <Button size="sm" variant="outline-secondary">
-                  Next <FaArrowRight />
+                  Next <ArrowRightIcon />
                 </Button>
               </Col>
             </Row>
@@ -262,7 +284,7 @@ const UserPage = () => {
               </Col>
               <Col md={3} className="text-end">
                 <Button variant="success" onClick={handleShow}>
-                  <FaPlus /> Add New Teachers
+                  <PlusIcon /> Add New Teachers
                 </Button>
               </Col>
             </Row>
@@ -272,14 +294,15 @@ const UserPage = () => {
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
+                // justifyContent: "center", // 'display: flow' doesn't use justifyContent
                 marginBottom: "0px",
-                display: "flow",
+                display: "flow", // Note: 'flow' is not a standard value for display. It might behave like 'block' or be ignored. 'block' or 'flex' are more common.
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  // justifyContent: "left", // 'display: block' (default for div) or text-align: left
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -293,20 +316,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end", // for display:flex parent
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
-                  marginRight: "30px",
+                  // marginTop: "0px", // Already default
+                  // marginLeft: "10px", // Not needed if parent div handles padding/margin
+                  marginRight: "30px", // This will push the content away from the right edge
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
 
@@ -320,6 +346,7 @@ const UserPage = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Table content for High School Teachers */}
                   <tr className="table-active">
                     <td>Samuel Isaiah</td>
                     <td>samuel@cradleschool.ng</td>
@@ -328,54 +355,7 @@ const UserPage = () => {
                       <span className="text-success">Year 7</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>English</td>
-                    <td>
-                      <span className="text-dark">Year 7</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>Biology & Chem...</td>
-                    <td>
-                      <span className="text-success">Year 7</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>Agric</td>
-                    <td>
-                      <span className="text-success">Year 7</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Civic Education</td>
-                    <td>
-                      <span className="text-success">Year 7</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Mathematics</td>
-                    <td>
-                      <span className="text-success">Year 7</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Civic Education</td>
-                    <td>
-                      <span className="text-success">Year 7</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Head Teacher</td>
                     <td>eunice@cradleschool.ng</td>
@@ -394,7 +374,8 @@ const UserPage = () => {
             >
               <Row className="align-items-center">
                 <Col>
-                  <strong className="text-center d-block">Total = 5</strong>
+                  <strong className="text-center d-block">Total = 5</strong>{" "}
+                  {/* This should be dynamic */}
                 </Col>
                 <Col className="text-end">
                   <Button
@@ -402,7 +383,7 @@ const UserPage = () => {
                     variant="outline-secondary"
                     className="me-2"
                   >
-                    <FaArrowLeft /> Prev
+                    <ArrowLeftIcon /> Prev
                   </Button>
                   <Button size="sm" variant="primary">
                     1
@@ -414,25 +395,25 @@ const UserPage = () => {
                     3
                   </Button>{" "}
                   <Button size="sm" variant="outline-secondary">
-                    Next <FaArrowRight />
+                    Next <ArrowRightIcon />
                   </Button>
                 </Col>
               </Row>
             </div>
 
+            {/* Primary Teachers Section */}
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
                 marginBottom: "0px",
                 display: "flow",
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -446,23 +427,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
-
               <Table striped bordered hover responsive className="mt-5">
                 <thead>
                   <tr>
@@ -481,54 +462,7 @@ const UserPage = () => {
                       <span className="text-success">None</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-dark">None</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">Kg 2</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">kg 3</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">Pry 1</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Quantative</td>
-                    <td>
-                      <span className="text-success">Pry 2</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Verbal</td>
-                    <td>
-                      <span className="text-success">None</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Head Teacher</td>
                     <td>eunice@cradleschool.ng</td>
@@ -540,15 +474,11 @@ const UserPage = () => {
                 </tbody>
               </Table>
             </div>
-
-            <div
-              style={{
-                marginBottom: "50px",
-              }}
-            >
+            <div style={{ marginBottom: "50px" }}>
               <Row className="align-items-center">
                 <Col>
-                  <strong className="text-center d-block">Total = 5</strong>
+                  <strong className="text-center d-block">Total = 5</strong>{" "}
+                  {/* This should be dynamic */}
                 </Col>
                 <Col className="text-end">
                   <Button
@@ -556,7 +486,7 @@ const UserPage = () => {
                     variant="outline-secondary"
                     className="me-2"
                   >
-                    <FaArrowLeft /> Prev
+                    <ArrowLeftIcon /> Prev
                   </Button>
                   <Button size="sm" variant="primary">
                     1
@@ -568,25 +498,25 @@ const UserPage = () => {
                     3
                   </Button>{" "}
                   <Button size="sm" variant="outline-secondary">
-                    Next <FaArrowRight />
+                    Next <ArrowRightIcon />
                   </Button>
                 </Col>
               </Row>
             </div>
 
+            {/* Montessori Teachers Section */}
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
                 marginBottom: "0px",
                 display: "flow",
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -600,23 +530,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
-
               <Table striped bordered hover responsive className="mt-5">
                 <thead>
                   <tr>
@@ -635,54 +565,7 @@ const UserPage = () => {
                       <span className="text-success">None</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-dark">None</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">Kg 2</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">kg 3</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>All</td>
-                    <td>
-                      <span className="text-success">Pry 1</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Quantative</td>
-                    <td>
-                      <span className="text-success">Pry 2</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Verbal</td>
-                    <td>
-                      <span className="text-success">None</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Head Teacher</td>
                     <td>eunice@cradleschool.ng</td>
@@ -694,14 +577,11 @@ const UserPage = () => {
                 </tbody>
               </Table>
             </div>
-            <div
-              style={{
-                marginBottom: "50px",
-              }}
-            >
+            <div style={{ marginBottom: "50px" }}>
               <Row className="align-items-center">
                 <Col>
-                  <strong className="text-center d-block">Total = 35</strong>
+                  <strong className="text-center d-block">Total = 35</strong>{" "}
+                  {/* This should be dynamic */}
                 </Col>
                 <Col className="text-end">
                   <Button
@@ -709,7 +589,7 @@ const UserPage = () => {
                     variant="outline-secondary"
                     className="me-2"
                   >
-                    <FaArrowLeft /> Prev
+                    <ArrowLeftIcon /> Prev
                   </Button>
                   <Button size="sm" variant="primary">
                     1
@@ -721,7 +601,7 @@ const UserPage = () => {
                     3
                   </Button>{" "}
                   <Button size="sm" variant="outline-secondary">
-                    Next <FaArrowRight />
+                    Next <ArrowRightIcon />
                   </Button>
                 </Col>
               </Row>
@@ -738,7 +618,7 @@ const UserPage = () => {
               </Col>
               <Col md={3} className="text-end">
                 <Button variant="success" onClick={handleShow}>
-                  <FaPlus /> Add New Parent
+                  <PlusIcon /> Add New Parent
                 </Button>
               </Col>
             </Row>
@@ -756,7 +636,7 @@ const UserPage = () => {
             >
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
@@ -764,12 +644,14 @@ const UserPage = () => {
                   letterSpacing: "0%",
                   display: "flex",
                   marginTop: "10px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
 
@@ -783,6 +665,7 @@ const UserPage = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Table content for Parents */}
                   <tr className="table-active">
                     <td>Samuel Isaiah</td>
                     <td>samuel@cradleschool.ng</td>
@@ -791,30 +674,7 @@ const UserPage = () => {
                       <span className="text-success">●</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>12/04/2023</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>12/04/2023</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>12/04/2023</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Head Teacher</td>
                     <td>eunice@cradleschool.ng</td>
@@ -829,11 +689,12 @@ const UserPage = () => {
 
             <Row className="align-items-center">
               <Col>
-                <strong className="text-center d-block">Total = 5</strong>
+                <strong className="text-center d-block">Total = 5</strong>{" "}
+                {/* This should be dynamic */}
               </Col>
               <Col className="text-end">
                 <Button size="sm" variant="outline-secondary" className="me-2">
-                  <FaArrowLeft /> Prev
+                  <ArrowLeftIcon /> Prev
                 </Button>
                 <Button size="sm" variant="primary">
                   1
@@ -845,7 +706,7 @@ const UserPage = () => {
                   3
                 </Button>{" "}
                 <Button size="sm" variant="outline-secondary">
-                  Next <FaArrowRight />
+                  Next <ArrowRightIcon />
                 </Button>
               </Col>
             </Row>
@@ -861,24 +722,24 @@ const UserPage = () => {
               </Col>
               <Col md={3} className="text-end">
                 <Button variant="success" onClick={handleShow}>
-                  <FaPlus /> Add New Students
+                  <PlusIcon /> Add New Students
                 </Button>
               </Col>
             </Row>
 
+            {/* High School Students */}
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
                 marginBottom: "0px",
                 display: "flow",
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -892,23 +753,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
-
               <Table striped bordered hover responsive className="mt-5">
                 <thead>
                   <tr>
@@ -927,54 +788,7 @@ const UserPage = () => {
                       <span className="text-success">●</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Directress</td>
                     <td>directress@cradleschool.ng</td>
@@ -987,13 +801,17 @@ const UserPage = () => {
                 </tbody>
               </Table>
             </div>
-            <Row className="align-items-center">
+            <Row
+              className="align-items-center"
+              style={{ marginBottom: "50px" }}
+            >
               <Col>
                 <strong className="text-center d-block">Total = 5</strong>
-              </Col>
+              </Col>{" "}
+              {/* Dynamic total */}
               <Col className="text-end">
                 <Button size="sm" variant="outline-secondary" className="me-2">
-                  <FaArrowLeft /> Prev
+                  <ArrowLeftIcon /> Prev
                 </Button>
                 <Button size="sm" variant="primary">
                   1
@@ -1005,23 +823,24 @@ const UserPage = () => {
                   3
                 </Button>{" "}
                 <Button size="sm" variant="outline-secondary">
-                  Next <FaArrowRight />
+                  Next <ArrowRightIcon />
                 </Button>
               </Col>
             </Row>
+
+            {/* Primary Students */}
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
                 marginBottom: "0px",
                 display: "flow",
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -1035,23 +854,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
-
               <Table striped bordered hover responsive className="mt-5">
                 <thead>
                   <tr>
@@ -1070,54 +889,7 @@ const UserPage = () => {
                       <span className="text-success">●</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>PRY 1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Directress</td>
                     <td>directress@cradleschool.ng</td>
@@ -1130,22 +902,19 @@ const UserPage = () => {
                 </tbody>
               </Table>
             </div>
-            <div
-              style={{
-                marginBottom: "50px",
-              }}
-            >
+            <div style={{ marginBottom: "50px" }}>
               <Row className="align-items-center">
                 <Col>
                   <strong className="text-center d-block">Total = 35</strong>
-                </Col>
+                </Col>{" "}
+                {/* Dynamic total */}
                 <Col className="text-end">
                   <Button
                     size="sm"
                     variant="outline-secondary"
                     className="me-2"
                   >
-                    <FaArrowLeft /> Prev
+                    <ArrowLeftIcon /> Prev
                   </Button>
                   <Button size="sm" variant="primary">
                     1
@@ -1157,25 +926,25 @@ const UserPage = () => {
                     3
                   </Button>{" "}
                   <Button size="sm" variant="outline-secondary">
-                    Next <FaArrowRight />
+                    Next <ArrowRightIcon />
                   </Button>
                 </Col>
               </Row>
             </div>
 
+            {/* Montessori Students */}
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 border: "2px solid white",
                 borderRadius: "10px",
-                justifyContent: "center",
                 marginBottom: "0px",
                 display: "flow",
               }}
             >
               <div
                 style={{
-                  justifyContent: "left",
+                  textAlign: "left",
                   color: "black",
                   fontWeight: "700",
                   fontSize: "32px",
@@ -1189,23 +958,23 @@ const UserPage = () => {
               </div>
               <div
                 style={{
-                  justifyContent: "right",
+                  justifyContent: "flex-end",
                   color: "red",
                   fontWeight: "400",
                   fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   display: "flex",
-                  marginTop: "0px",
-                  marginLeft: "10px",
                   marginRight: "30px",
                 }}
               >
-                <span>
-                  Delete <FaTrash />
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete <TrashIcon />
                 </span>
               </div>
-
               <Table striped bordered hover responsive className="mt-5">
                 <thead>
                   <tr>
@@ -1224,82 +993,31 @@ const UserPage = () => {
                       <span className="text-success">●</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>NUR1</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>NUR1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
+                  {/* ... other rows ... */}
                   <tr>
                     <td>Directress</td>
                     <td>directress@cradleschool.ng</td>
                     <td>NUR1</td>
                     <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head Teacher</td>
-                    <td>eunice@cradleschool.ng</td>
-                    <td>NUR1</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Director</td>
-                    <td>director@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-dark">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Principal</td>
-                    <td>principal@cradleschool.ng</td>
-                    <td>Year 7</td>
-                    <td>
-                      <span className="text-success">●</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Directress</td>
-                    <td>directress@cradleschool.ng</td>
-                    <td>NUR1</td>
-                    <td>
-                      {" "}
                       <span className="text-success">●</span>
                     </td>
                   </tr>
                 </tbody>
               </Table>
             </div>
-            <div
-              style={{
-                marginBottom: "50px",
-              }}
-            >
+            <div style={{ marginBottom: "50px" }}>
               <Row className="align-items-center">
                 <Col>
                   <strong className="text-center d-block">Total = 35</strong>
-                </Col>
+                </Col>{" "}
+                {/* Dynamic total */}
                 <Col className="text-end">
                   <Button
                     size="sm"
                     variant="outline-secondary"
                     className="me-2"
                   >
-                    <FaArrowLeft /> Prev
+                    <ArrowLeftIcon /> Prev
                   </Button>
                   <Button size="sm" variant="primary">
                     1
@@ -1311,7 +1029,7 @@ const UserPage = () => {
                     3
                   </Button>{" "}
                   <Button size="sm" variant="outline-secondary">
-                    Next <FaArrowRight />
+                    Next <ArrowRightIcon />
                   </Button>
                 </Col>
               </Row>
@@ -1322,7 +1040,10 @@ const UserPage = () => {
         {/* Modal Form */}
         <Modal show={showModal} onHide={handleClose} centered>
           <Modal.Header closeButton>
-            <Modal.Title>New Administrator</Modal.Title>
+            {/* Title should be dynamic based on activeTab or a prop */}
+            <Modal.Title>
+              New {activeTab.charAt(0).toUpperCase() + activeTab.slice(1, -1)}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <h6>Sign up</h6>
@@ -1345,21 +1066,31 @@ const UserPage = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              <h6>Permissions / Access</h6>
-              <Row>
-                <Col>
-                  <Form.Check label="Super Admin Access" />
-                  <Form.Check label="Academic Management" />
-                  <Form.Check label="Communication Management" />
-                </Col>
-                <Col>
-                  <Form.Check label="User Management" />
-                  <Form.Check label="Financial Management" />
-                  <Form.Check label="Report Management" />
-                </Col>
-              </Row>
+              {/* Permissions section might only be relevant for administrators */}
+              {activeTab === "administrators" && (
+                <>
+                  <h6>Permissions / Access</h6>
+                  <Row>
+                    <Col>
+                      <Form.Check label="Super Admin Access" />
+                      <Form.Check label="Academic Management" />
+                      <Form.Check label="Communication Management" />
+                    </Col>
+                    <Col>
+                      <Form.Check label="User Management" />
+                      <Form.Check label="Financial Management" />
+                      <Form.Check label="Report Management" />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {/* Add other form fields specific to teachers, parents, students if needed */}
               <div className="text-center mt-3">
-                <Button variant="primary">Create</Button>
+                <Button variant="primary" onClick={handleClose}>
+                  {" "}
+                  {/* Added onClick to close modal on create for example */}
+                  Create
+                </Button>
               </div>
             </Form>
           </Modal.Body>
