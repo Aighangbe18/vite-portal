@@ -16,20 +16,20 @@ import {
   Link,
   // redirect, // 'redirect' was imported but not used. Removed unless needed.
 } from "react-router-dom";
-// Import IconProps for typing the wrapper components
-import { IconProps } from "react-icons";
+
+import { IconBaseProps } from "react-icons/lib";
 // Import the specific icons
 import { FaPlus, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import logoImg from "../assets/CHS-Logo.png";
 import "../App.css";
 
 // Wrapper components for icons to ensure correct typing for JSX
-const PlusIcon: React.FC<IconProps> = (props) => <FaPlus {...props} />;
-const TrashIcon: React.FC<IconProps> = (props) => <FaTrash {...props} />;
-const ArrowLeftIcon: React.FC<IconProps> = (props) => (
+const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
+const TrashIcon: React.FC<IconBaseProps> = (props) => <FaTrash {...props} />;
+const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
   <FaArrowLeft {...props} />
 );
-const ArrowRightIcon: React.FC<IconProps> = (props) => (
+const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
   <FaArrowRight {...props} />
 );
 

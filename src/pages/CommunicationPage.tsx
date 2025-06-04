@@ -10,6 +10,18 @@ import TopImage from "../components/TopImage";
 import "../App.css";
 import { FaPlus, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
+import { IconBaseProps } from "react-icons/lib";
+
+// Wrapper components for icons to ensure correct typing for JSX
+const PlusIcon: React.FC<IconBaseProps> = (props) => <FaPlus {...props} />;
+
+const ArrowLeftIcon: React.FC<IconBaseProps> = (props) => (
+  <FaArrowLeft {...props} />
+);
+const ArrowRightIcon: React.FC<IconBaseProps> = (props) => (
+  <FaArrowRight {...props} />
+);
+
 const CommunicationPage = () => {
   const [activeTab, setActiveTab] = useState("announcements");
   const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
